@@ -1,0 +1,171 @@
+﻿@model Assignment4.Models.salesinfo
+
+@{
+    ViewBag.Title = "AddInfo";
+}
+
+<h2>AddInfo</h2>
+<style>
+    .errorMessage{
+        color:#ff0000;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        <div class="row">
+            <div class="col-md-2 col-sm-2"></div>
+            <div class="col-md-8 col-sm-8">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2"></div>
+                    <div class="col-md-8 col-sm-8"><label id="lblError" class="errorMessage"></label></div>
+                    <div class="col-md-2 col-sm-2"></div>
+                </div>
+               
+                <div class="form-group">
+                    @Html.LabelFor(model => model._name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model._name, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model._contact_no, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model._contact_no, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model._contact_email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model._contact_email, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model._address, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model._address, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model._city, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model._city, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model._car_make, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model._car_make, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model._car_model, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model._car_model, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model._car_year, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model._car_year, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Submit" id="btnSubmit" class="btn btn-success" />
+                        <a href="~/Sale/Index" class="btn btn-default">Cancel </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2"></div>
+        </div>
+    </div>
+}
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    $('#btnSubmit').click(function (e) {
+        var isValid = true;
+        debugger;
+        $('#lblError').html('<h3>Error Messages<h3/><hr />');
+        if ($('input[name=_name]').val() == '') {
+            isValid = false;
+            $('#lblError').append('</br> Name is required');
+        }
+        if ($('input[name=_contact_email]').val() == '') {
+            isValid = false;
+            $('#lblError').append('</br>Contact email is required');
+        }
+        else {
+            regex = /^([A-Za-z0-9_\-\.])+\@@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            if (!regex.test($('input[name=_contact_email]').val())) {
+                $('#lblError').append('</br>Invalid Contact Email');
+                isValid = false;
+            }
+        }
+        if ($('input[name=_contact_no]').val() == '') {
+            isValid = false;
+            $('#lblError').append('</br>Contact No is required');
+        }
+        else {
+			regex = /^(?=.*[0-9])[- +()0-9]+$/;
+            if ($('input[name=_contact_no]').val().length <= 15) {
+				if (!regex.test($('input[name=_contact_no]').val()))
+				{
+                    isValid = false;
+                    $('#lblError').append('</br>Invalid Contact No');
+                }
+            }
+            else {
+                isValid = false;
+                $('#lblError').append('</br>Contact No length should be 10 digits');
+            }
+        }
+        if ($('input[name=_address]').val() == '') {
+            isValid = false;
+            $('#lblError').append('</br>Address is required');
+        }
+        if ($('input[name=_city]').val() == '') {
+            isValid = false;
+            $('#lblError').append('</br>City is required');
+        }
+        if ($('input[name=_car_make]').val() == '') {
+            isValid = false;
+            $('#lblError').append('</br>Car make is required');
+        }
+        if ($('input[name=_car_model]').val() == '') {
+            isValid = false;
+            $('#lblError').append('</br>Car model is required');
+        }
+        if ($('input[name=_car_year]').val() == '') {
+            isValid = false;
+            $('#lblError').append('</br>Car year is required');
+        }
+        else {
+            if ($.isNumeric($('input[name=_car_year]').val())) {
+                $('#lblErrorCarYear').html('');
+                if ($('input[name=_car_year]').val() * 1 < 2000 || $('input[name=_car_year]').val() * 1 > 2018) {
+                    isValid = false;
+                    $('#lblError').append('</br>Year selected should be between 1990 - 2018');
+                }
+            }
+            else {
+                isValid = false;
+                $('#lblError').append('</br>Invalid car year selected');
+            }
+        }
+        if (!isValid) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    });
+
+</script>

@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Assignment4.Models.salesinfo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddInfo")
+</p>
+<table class="table">
+    <tr> 
+        <th>
+            @Html.DisplayNameFor(model => model._name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model._contact_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model._contact_email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model._address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model._city)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model._car_make)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model._car_model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model._car_year)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr> 
+        <td>
+            @Html.DisplayFor(modelItem => item._name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item._contact_no)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item._contact_email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item._address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item._city)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item._car_make)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item._car_model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item._car_year)
+        </td>
+        <td>
+           <a href="http://www.jdpower.com/cars/@item._car_make/@item._car_model/@item._car_year" target="_blank">Click To View</a>
+        </td>
+    </tr>
+}
+
+</table>

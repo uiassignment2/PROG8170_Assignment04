@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Assignment4ModelStoreContainer" CdmEntityContainer="Assignment4Entities">
+    <EntitySetMapping Name="saleinfoes">
+      <EntityTypeMapping TypeName="Assignment4Model.saleinfo">
+        <MappingFragment StoreEntitySet="saleinfo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="contact_no" ColumnName="contact_no" />
+          <ScalarProperty Name="contact_email" ColumnName="contact_email" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="car_model" ColumnName="car_model" />
+          <ScalarProperty Name="car_make" ColumnName="car_make" />
+          <ScalarProperty Name="car_year" ColumnName="car_year" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
